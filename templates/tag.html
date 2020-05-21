@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .row1{
+            color: red;
+        }
+        .row2{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+{# is defined/undefined none number/string even/odd upper/lower#}
+{% if var is none %}
+var 是 none
+{% else %}
+var 不是 none
+{% endif %}
+
+<ul>
+    {% for key,value in list_obj.items() %}
+        {% if loop.index == 2 %}
+            {% continue %}
+        {% endif %}
+        <li class="{{ loop.cycle('odd', 'even') }}">{{ value }}</li>
+    {% else %}
+        <li>暂无数据</li>
+    {% endfor %}
+</ul>
+
+
+
+{% with %}
+    {% set value = 100 %}
+    {{ value }} 11
+{% endwith %}
+{{ value }} 22
+
+{% filter upper %}
+    {{ hello }}
+{% endfilter %}
+
+{{ hello|upper }}
+
+{{ -5|abs }}
+{{ var2|default('我没有了', True) }}
+{{ var2|d('我没有了', True) }}
+{% autoescape false %}
+{{ html|reverse }}
+{{ html|escape }}
+{% endautoescape %}
+{{ phone | phone_format }}
+
+{% raw %}
+ }}
+{% endraw %}
+
+{% set class_name = cycler('row1', 'row2') %}
+{% for i in range(10) %}
+    <p class="{{ class_name.next() }}">{{ i }}</p>
+{% endfor %}
+
+
+
+{#{% macro input(type_name, name, value='') %}#}
+{#    <input type="{{ type_name }}" name="{{ name }}" value="{{ value }}">#}
+{#{% endmacro %}#}
+
+{% from 'forms.html' import input %}
+{{ input('text', 'username', 'chy') }}
+
+
+{% for msg in get_flashed_messages() %}
+    <p>{{ msg }}</p>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for key,value in get_flashed_messages(with_categories=true, category_filter=['success', 'error']) %}
+    <p class="{{ key }}">{{ value }}</p>
+{% endfor %}
+</body>
+</html>

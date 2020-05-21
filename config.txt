@@ -4,3 +4,16 @@ set FLASK_ENV=development
 flask run
 (flask run --host=0.0.0.0 --port=8001)
 (falsk run -h 0.0.0.0 -p 8001)
+
+默认配置
+template_folder='templates' 模板默认目录
+{% autoescape %}  手动设置是否转义
+get_flashed_messages()  回话消息
+
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+{% include 'footer.html' ignore missing with context%}
+{% include 'footer.html' ignore missing without context%}
+flash(msg,type)
+get_flashed_messages()
