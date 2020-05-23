@@ -5,6 +5,7 @@ flask run
 (flask run --host=0.0.0.0 --port=8001)
 (falsk run -h 0.0.0.0 -p 8001)
 
+二、模板
 默认配置
 template_folder='templates' 模板默认目录
 {% autoescape %}  手动设置是否转义
@@ -17,3 +18,37 @@ get_flashed_messages()  回话消息
 {% include 'footer.html' ignore missing without context%}
 flash(msg,type)
 get_flashed_messages()
+
+三、ORM
+pip install flask-sqlalchemy
+db.create_all()
+db.drop_all()
+
+新增 修改 删除
+user = User(id=1, username='zhangsan', password='123456')
+db.session.add(user)
+db.session.delete(user)
+db.session.commit()
+查询
+User.query.all()
+User.query.filter_by(username='zhangsan').first()
+User.query.filter(User.username.endswith('s')).all()
+User.query.order_by(User.username)
+User.query.limit(10).all()
+User.query.get(1)
+User.query.get_or_404()
+User.query.first()
+User.query.first_or_404()
+db.session.query(User).join(Address)
+User.query.join(Address)
+分页
+User.query.offset(offset).limit(limit)
+pagination= User.query.paginate(page=2, per_page=4)
+pagination.has_prev/has_next
+pagination.iter_pages()
+pagination.prev_num/next_num
+pagination.total/
+
+
+四、表单
+pip install flask-wtf

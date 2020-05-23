@@ -53,7 +53,7 @@ def list_user(page=None):
 def index():
     # print(current_app)
     # return 'index'
-    # return render_template('index.html')
+    # return render_template('product_list.html')
     html = """
     <!DOCTYPE html>
         <html lang="en">
